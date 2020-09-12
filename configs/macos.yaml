@@ -1,0 +1,2 @@
+- shell:
+    - [sudo .macos/defaults, Configuring macOS defaults]

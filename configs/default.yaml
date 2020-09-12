@@ -1,0 +1,21 @@
+- defaults:
+    link:
+        create: true
+        relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.gitconfig: .files/.gitconfig
+    ~/.gitconfig.movinga: .files/.gitconfig.movinga
+    ~/.gitignore: .files/.gitignore
+    ~/.gitmessage: .files/.gitmessage
+
+- shell:
+    - [mkdir -p ~/Downloads, Creating downloads directory]
+    - [mkdir -p ~/Projects, Creating projects directory]
+    # - ["[[ ! -z "$INSTALL_SOMETHING" ]] && ./install shell"]
+    # - [./install brew]
+    # - [./install macos]
+    # - [./install apps]
+    

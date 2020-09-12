@@ -1,0 +1,20 @@
+- defaults:
+    link:
+        create: true
+        relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.antigen: .antigen
+    ~/.vim/bundle/Vundle.vim: .vim/bundle/Vundle.vim
+    ~/.aliases: .shell/.aliases
+    ~/.profile: .shell/.profile
+    ~/.vimrc: .shell/.vimrc
+    ~/.zshrc: .shell/.zshrc
+    ~/.gnupg/gpg.conf: .gnupg/gpg.conf
+    ~/.gnupg/gpg-agent.conf: .gnupg/gpg-agent.conf
+
+- shell:
+    - [chsh -s $(which zsh), Change login shell to zsh]
+    - [vim +PluginInstall +qall, Lauching Vim to install plugins]

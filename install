@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+
+set -e
+
+PROGNAME=$0
+usage() {
+  cat << EOF >&2
+Usage: $PROGNAME [config1 config2] [--fresh]
+      --fresh: Use this when setting up a fresh machine
+EOF
+  exit 1
+}
+
+DEFAULT_CONFIG_PREFIX="default"
+CONFIG_SUFFIX=".yaml"
+CONFIG_DIR="configs/"
+DOTBOT_DIR=".dotbot"
+
+DOTBOT_BIN="bin/dotbot"
+BASEDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+configs=${DEFAULT_CONFIG_PREFIX}
+if ! [ -z "$*" ]; then
+  configs=${@/--fresh/}
+fi
+
+# If installing `apps` via iTerm switch to Terminal and kill iTerm
+if [ "$TERM_PROGRAM" = 'iTerm.app' ] && [[ $configs == *"apps"* ]]; then
+  >&2 echo "WARNING! Please use the default Terminal to run the apps install"
+  osascript -e "tell application \"iTerm\" to quit"
+  osascript -e "tell application \"Terminal\" to do script \"cd $PWD && clear && ./install $configs\" in window 1" > /dev/null
+  exit 1
+fi
+
+cd "${BASEDIR}"
+git submodule update --init --recursive "${DOTBOT_DIR}"
+
+for conf in ${configs}; do
+    "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" --plugin-dir "${BASEDIR}/.dotbot-brew" -c "${CONFIG_DIR}${conf}${CONFIG_SUFFIX}"
+done
