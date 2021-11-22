@@ -33,7 +33,7 @@ if [ "$TERM_PROGRAM" = 'iTerm.app' ] && [[ $configs == *"apps"* ]]; then
 fi
 
 cd "${BASEDIR}"
-git submodule update --init --recursive "${DOTBOT_DIR}"
+git submodule update --init --recursive "${BASEDIR}"
 
 for conf in ${configs}; do
     "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" --plugin-dir "${BASEDIR}/.dotbot-brew" -c "${CONFIG_DIR}${conf}${CONFIG_SUFFIX}"
