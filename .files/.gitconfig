@@ -127,3 +127,5 @@
 		fi \
 	}; f"
 
+[gpg]
+	program = gpg

@@ -123,3 +123,6 @@ alias brewu="brew update && brew upgrade && brew cleanup && brew cleanup --prune
 
 # Copy public key to clipboard:
 alias pubkey="cat ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
+
+# SF
+alias soql="sfdx force:data:soql:query -u movinga -q"

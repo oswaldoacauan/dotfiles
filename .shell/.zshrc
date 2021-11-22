@@ -29,13 +29,18 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen apply
 
 function chpwd {
-  if [ "$(command -v n)" ]; then
+  if [ "$(command -v nvm)" ]; then
     if [ -f 'package.json' ]; then
-        n auto
+        nvm use
     fi
   fi
 }
 
 
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
+
 source ~/.profile
 source ~/.aliases
+export PATH="/usr/local/opt/terraform@0.11/bin:$PATH"
+export PATH="/usr/local/opt/terraform@0.12/bin:$PATH"
