@@ -1,10 +1,16 @@
 [user]
 	email = oswaldoacauan@users.noreply.github.com
 	name = Oswaldo Acauan
-	signingkey = A71781A18A1806A6
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDQPgYmHgWNdpBx5pTWnf18OgFpnDTN2QRuP52M9Ana8
 
-[includeIf "gitdir:~/Projects/movinga/**"]
-  path = ~/.gitconfig.movinga
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+  gpgsign = true
 
 [core]
 	trustctime = false
@@ -126,6 +132,3 @@
 			git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
 		fi \
 	}; f"
-
-[gpg]
-	program = gpg
